@@ -3,9 +3,8 @@ const Service = require('../models/serviceModel')
 const middleware = require('../utils/middleware')
 
 servicesRouter.get('/', async (request, response) => {
-  // const services = await Service
-  //   .find({})
-  const services = []
+  const services = await Service
+    .find({})
   response.json(services)
 })
 
