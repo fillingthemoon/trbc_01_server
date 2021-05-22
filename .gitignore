@@ -1,0 +1,7 @@
+# misc
+.DS_Store
+
+# server
+node_modules
+.env
+serviceAccountKey.json
