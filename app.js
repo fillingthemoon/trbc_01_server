@@ -3,6 +3,7 @@ const express = require('express')
 require('express-async-errors')
 const app = express()
 const cors = require('cors')
+app.use(express.static('build'))
 
 // Routers
 const servicesRouter = require('./controllers/servicesController')
