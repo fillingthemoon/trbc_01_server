@@ -6,7 +6,7 @@ const cors = require('cors')
 app.use(express.static('build'))
 
 // Routers
-const servicesRouter = require('./controllers/servicesController')
+const itemsRouter = require('./controllers/itemsController')
 
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
@@ -25,7 +25,7 @@ app.use(express.json())
 
 app.use(middleware.tokenExtractor)
 
-app.use('/api/services', servicesRouter)
+app.use('/api/items', itemsRouter)
 
 // if (process.env.NODE_ENV === 'test') {
 //   const testingRouter = require('./controllers/testing')

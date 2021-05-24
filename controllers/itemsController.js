@@ -1,19 +1,19 @@
-const servicesRouter = require('express').Router()
-const Service = require('../models/serviceModel')
+const itemsRouter = require('express').Router()
+const Item = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
-servicesRouter.get('/', async (request, response) => {
-  const services = await Service
+itemsRouter.get('/', async (request, response) => {
+  const items = await Item
     .find({})
-  response.json(services)
+  response.json(items)
 })
 
-// servicesRouter.get('/:id', async (request, response) => {
+// itemsRouter.get('/:id', async (request, response) => {
 //   const blog = await Blog.findById(request.params.id)
 //   response.json(blog)
 // })
 
-// servicesRouter.post('/', middleware.userExtractor, async (request, response) => {
+// itemsRouter.post('/', middleware.userExtractor, async (request, response) => {
 //   const body = request.body
 //   const user = request.user
 
@@ -33,7 +33,7 @@ servicesRouter.get('/', async (request, response) => {
 //   response.status(201).json(savedBlog)
 // })
 
-// servicesRouter.put('/:id', async (request, response) => {
+// itemsRouter.put('/:id', async (request, response) => {
 //   const blog = request.body
 
 //   const result = await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
@@ -53,4 +53,4 @@ servicesRouter.get('/', async (request, response) => {
 //   }
 // })
 
-module.exports = servicesRouter
+module.exports = itemsRouter
