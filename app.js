@@ -7,6 +7,8 @@ const cors = require('cors')
 app.use(express.static('build')) // For backend to draw client files from build
 
 // Routers
+const loginRouter = require('./controllers/loginController')
+const usersRouter = require('./controllers/usersController')
 const itemsRouter = require('./controllers/itemsController')
 
 const announcementsRouter = require('./controllers/announcementsController')
@@ -43,6 +45,8 @@ app.use(express.json())
 app.use(middleware.tokenExtractor)
 
 // Middleware routes
+app.use('/api/login', loginRouter)
+app.use('/api/users', usersRouter)
 app.use('/api/items', itemsRouter)
 
 app.use('/api/announcements', announcementsRouter)
