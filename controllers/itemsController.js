@@ -5,6 +5,9 @@ const middleware = require('../utils/middleware')
 itemsRouter.get('/', async (request, response) => {
   const items = await Item
     .find({})
+    .sort({
+      item_id: 'ascending',
+    })
   response.json(items)
 })
 

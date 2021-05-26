@@ -4,7 +4,12 @@ const middleware = require('../utils/middleware')
 
 ourTeamRouter.get('/', async (request, response) => {
   const items = await Item
-    .find({ page: 'our-team' })
+    .find({
+      page: 'our-team'
+    })
+    .sort({
+      item_id: 'ascending',
+    })
   response.json(items)
 })
 

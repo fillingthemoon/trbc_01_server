@@ -4,7 +4,13 @@ const middleware = require('../utils/middleware')
 
 cecRouter.get('/', async (request, response) => {
   const items = await Item
-    .find({ page: 'cec', sectionName: 'CEC' })
+    .find({
+      page: 'cec',
+      sectionName: 'CEC'
+    })
+    .sort({
+      item_id: 'ascending',
+    })
   response.json(items)
 })
 

@@ -4,7 +4,13 @@ const middleware = require('../utils/middleware')
 
 imNewRouter.get('/', async (request, response) => {
   const items = await Item
-    .find({ page: 'im-new', sectionName: 'I\'m New' })
+    .find({
+      page: 'im-new',
+      sectionName: 'I\'m New'
+    })
+    .sort({
+      item_id: 'ascending',
+    })
   response.json(items)
 })
 

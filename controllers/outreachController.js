@@ -4,7 +4,12 @@ const middleware = require('../utils/middleware')
 
 outreachRouter.get('/', async (request, response) => {
   const items = await Item
-    .find({ page: 'outreach' })
+    .find({
+      page: 'outreach'
+    })
+    .sort({
+      item_id: 'ascending',
+    })
   response.json(items)
 })
 
