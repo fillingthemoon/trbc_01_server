@@ -21,6 +21,7 @@ const servicesRouter = require('./controllers/servicesController')
 const statementOfFaithRouter = require('./controllers/statementOfFaithController')
 const upcomingSermonsRouter = require('./controllers/upcomingSermonsController')
 
+
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
@@ -33,6 +34,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
     logger.error('error connecting to MongoDB:', error.message)
   })
 
+// Midleware
 app.use(cors())
 app.use(express.json())
 
