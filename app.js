@@ -3,6 +3,8 @@ const express = require('express')
 require('express-async-errors')
 const app = express()
 const cors = require('cors')
+
+// For backend to draw client files from build
 app.use(express.static('build'))
 
 // Routers
@@ -35,7 +37,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
     logger.error('error connecting to MongoDB:', error.message)
   })
 
-// Midleware
+// Middleware
 app.use(cors())
 app.use(express.json())
 
