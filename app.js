@@ -1,11 +1,10 @@
 const config = require('./utils/config')
 const express = require('express')
-require('express-async-errors')
+require('express-async-errors') // To handle express async errors
 const app = express()
 const cors = require('cors')
 
-// For backend to draw client files from build
-app.use(express.static('build'))
+app.use(express.static('build')) // For backend to draw client files from build
 
 // Routers
 const itemsRouter = require('./controllers/itemsController')
