@@ -42,7 +42,7 @@ app.use(express.json())
 
 app.use(middleware.tokenExtractor)
 
-
+// Middleware routes
 app.use('/api/items', itemsRouter)
 
 app.use('/api/announcements', announcementsRouter)
