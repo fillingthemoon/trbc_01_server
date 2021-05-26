@@ -30,6 +30,10 @@ const detailsSchema = {
 }
 
 const itemSchema = new mongoose.Schema({
+  item_id: {
+    type: Number,
+    required: true,
+  },
   page: {
     type: String,
     required: true,

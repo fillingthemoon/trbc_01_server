@@ -4,7 +4,7 @@ const middleware = require('../utils/middleware')
 
 eventsRouter.get('/', async (request, response) => {
   const items = await Item
-    .find({})
+    .find({ page: 'home', sectionName: 'Events' })
   response.json(items)
 })
 

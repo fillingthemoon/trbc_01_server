@@ -4,7 +4,7 @@ const middleware = require('../utils/middleware')
 
 missionsRouter.get('/', async (request, response) => {
   const items = await Item
-    .find({})
+    .find({ page: 'missions', sectionName: 'Missions' })
   response.json(items)
 })
 
