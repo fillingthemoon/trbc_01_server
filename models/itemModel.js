@@ -11,9 +11,9 @@ const linkSchema = {
   },
 }
 
-const eventDetailsSchema = {
+const detailsSchema = {
   date: {
-    type: Date,
+    type: String,
   },
   time: {
     type: String,
@@ -24,23 +24,33 @@ const eventDetailsSchema = {
   person: {
     type: String,
   },
+  passage: {
+    type: String,
+  },
 }
 
 const itemSchema = new mongoose.Schema({
   page: {
     type: String,
-    required: true
+    required: true,
   },
   sectionName: {
+    type: String,
+    required: true,
+  },
+  congre: {
     type: String,
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   text: {
     type: String,
-    required: true
+    required: true,
+  },
+  details: {
+    type: detailsSchema,
   },
   imgSrc: {
     type: String,
@@ -48,9 +58,6 @@ const itemSchema = new mongoose.Schema({
   link: {
     type: linkSchema,
   },
-  eventDetails: {
-    type: eventDetailsSchema,
-  }
 })
 
 itemSchema.set('toJSON', {

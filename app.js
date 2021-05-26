@@ -8,6 +8,19 @@ app.use(express.static('build'))
 // Routers
 const itemsRouter = require('./controllers/itemsController')
 
+const announcementsRouter = require('./controllers/announcementsController')
+const cecRouter = require('./controllers/cecController')
+const discipleshipRouter = require('./controllers/discipleshipController')
+const eventsRouter = require('./controllers/eventsController')
+const imNewRouter = require('./controllers/imNewController')
+const missionsRouter = require('./controllers/missionsController')
+const ourHistoryRouter = require('./controllers/ourHistoryController')
+const ourTeamRouter = require('./controllers/ourTeamController')
+const outreachRouter = require('./controllers/outreachController')
+const servicesRouter = require('./controllers/servicesController')
+const statementOfFaithRouter = require('./controllers/statementOfFaithController')
+const upcomingSermonsRouter = require('./controllers/upcomingSermonsController')
+
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
@@ -25,7 +38,21 @@ app.use(express.json())
 
 app.use(middleware.tokenExtractor)
 
+
 app.use('/api/items', itemsRouter)
+
+app.use('/api/announcements', announcementsRouter)
+app.use('/api/cec', cecRouter)
+app.use('/api/discipleship', discipleshipRouter)
+app.use('/api/events', eventsRouter)
+app.use('/api/im-new', imNewRouter)
+app.use('/api/missions', missionsRouter)
+app.use('/api/our-history', ourHistoryRouter)
+app.use('/api/our-team', ourTeamRouter)
+app.use('/api/outreach', outreachRouter)
+app.use('/api/services', servicesRouter)
+app.use('/api/statement-of-faith', statementOfFaithRouter)
+app.use('/api/upcoming-sermons', upcomingSermonsRouter)
 
 // if (process.env.NODE_ENV === 'test') {
 //   const testingRouter = require('./controllers/testing')
