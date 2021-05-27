@@ -53,7 +53,12 @@ const tokenExtractor = (request, response, next) => {
 
 const userExtractor = async (request, response, next) => {
   const token = request.token
+
+  // Placing this middleware, and this line more specifically,
+  // in the controller allows for token authentication.
   const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET)
+
+  // Allows us to extract the user attempting to CRUD
   const user = await User.findById(decodedToken.id)
   request.user = user
 

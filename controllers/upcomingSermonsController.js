@@ -40,4 +40,16 @@ upcomingSermonsRouter.post('/', middleware.userExtractor, async (request, respon
   response.status(201).json(savedUpcomingSermon)
 })
 
+upcomingSermonsRouter.put('/:id', middleware.userExtractor, async (request, response) => {
+  const upcomingSermon = request.body
+
+  const result = await Item.findByIdAndUpdate(request.params.id, upcomingSermon, { new: true })
+  response.json(result)
+})
+
+upcomingSermonsRouter.delete('/:id', middleware.userExtractor, async (request, response) => {
+  await Item.findByIdAndRemove(request.params.id)
+  response.status(204).send()
+})
+
 module.exports = upcomingSermonsRouter
