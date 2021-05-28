@@ -2,12 +2,60 @@ const itemsRouter = require('express').Router()
 const Item = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
-itemsRouter.get('/', async (request, response) => {
+// itemsRouter.get('/', async (request, response) => {
+//   const items = await Item
+//     .find({})
+//     .sort({
+//       item_id: 'ascending',
+//     })
+//   response.json(items)
+// })
+
+itemsRouter.get('/pages/', async (request, response) => {
   const items = await Item
-    .find({})
-    .sort({
-      item_id: 'ascending',
-    })
+    .aggregate([
+      {
+        $group: {
+          _id: '$page'
+        }
+      },
+      {
+        $lookup: {
+          from: 'items',
+          let: { page: '$_id' }, // localField
+
+          // pipeline to manage lookup-data ()
+          pipeline: [
+            {
+              $match: {
+                $expr: {
+                  // $page is foreignField
+                  // $$page is localField
+                  $eq: ['$page', '$$page']
+                }
+              }
+            },
+            {
+              // group by sectionName
+              $group: {
+                _id: '$sectionName',
+              }
+            },
+            {
+              $sort: {
+                _id: 1,
+              }
+            },
+          ],
+          as: 'items',
+        },
+      },
+      {
+        $sort: {
+          _id: 1,
+        }
+      }
+    ])
   response.json(items)
 })
 
