@@ -6,10 +6,10 @@ imNewRouter.get('/', async (request, response) => {
   const items = await Item
     .find({
       page: 'im-new',
-      sectionName: 'I\'m New'
+      sectionName: 'im-new'
     })
     .sort({
-      item_id: 'ascending',
+      itemId: 'ascending',
     })
   response.json(items)
 })

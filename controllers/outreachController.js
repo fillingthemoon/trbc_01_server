@@ -8,7 +8,7 @@ outreachRouter.get('/', async (request, response) => {
       page: 'outreach'
     })
     .sort({
-      item_id: 'ascending',
+      itemId: 'ascending',
     })
   response.json(items)
 })

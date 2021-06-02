@@ -8,7 +8,7 @@ servicesRouter.get('/', async (request, response) => {
       page: 'services'
     })
     .sort({
-      item_id: 'ascending',
+      itemId: 'ascending',
     })
   response.json(items)
 })

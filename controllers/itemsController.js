@@ -2,14 +2,20 @@ const itemsRouter = require('express').Router()
 const Item = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
-// itemsRouter.get('/', async (request, response) => {
-//   const items = await Item
-//     .find({})
-//     .sort({
-//       item_id: 'ascending',
-//     })
-//   response.json(items)
-// })
+itemsRouter.get('/', async (request, response) => {
+  const items = await Item
+    .find({})
+    .sort({
+      itemId: 'ascending',
+    })
+  response.json(items)
+})
+
+itemsRouter.get('/item/:id', async (request, response) => {
+  const item = await Item
+    .findById(request.params.id)
+  response.json(item)
+})
 
 itemsRouter.get('/pages/', async (request, response) => {
   const items = await Item
@@ -58,11 +64,6 @@ itemsRouter.get('/pages/', async (request, response) => {
     ])
   response.json(items)
 })
-
-// itemsRouter.get('/:id', async (request, response) => {
-//   const blog = await Blog.findById(request.params.id)
-//   response.json(blog)
-// })
 
 // itemsRouter.post('/', middleware.userExtractor, async (request, response) => {
 //   const body = request.body

@@ -6,10 +6,10 @@ statementOfFaithRouter.get('/', async (request, response) => {
   const items = await Item
     .find({
       page: 'statement-of-faith',
-      sectionName: 'Statement of Faith'
+      sectionName: 'statement-of-faith'
     })
     .sort({
-      item_id: 'ascending',
+      itemId: 'ascending',
     })
   response.json(items)
 })

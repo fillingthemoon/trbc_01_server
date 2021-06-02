@@ -6,10 +6,10 @@ announcementsRouter.get('/', async (request, response) => {
   const items = await Item
     .find({
       page: 'home',
-      sectionName: 'Announcements'
+      sectionName: 'announcements'
     })
     .sort({
-      item_id: 'ascending',
+      itemId: 'ascending',
     })
   response.json(items)
 })

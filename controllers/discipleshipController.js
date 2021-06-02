@@ -6,10 +6,10 @@ discipleshipRouter.get('/', async (request, response) => {
   const items = await Item
     .find({
       page: 'discipleship',
-      sectionName: 'Discipleship'
+      sectionName: 'discipleship'
     })
     .sort({
-      item_id: 'ascending',
+      itemId: 'ascending',
     })
   response.json(items)
 })

@@ -8,7 +8,7 @@ ourTeamRouter.get('/', async (request, response) => {
       page: 'our-team'
     })
     .sort({
-      item_id: 'ascending',
+      itemId: 'ascending',
     })
   response.json(items)
 })

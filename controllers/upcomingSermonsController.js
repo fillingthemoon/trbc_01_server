@@ -6,10 +6,10 @@ upcomingSermonsRouter.get('/', async (request, response) => {
   const items = await Item
     .find({
       page: 'home',
-      sectionName: 'Upcoming Sermons'
+      sectionName: 'upcoming-sermons'
     })
     .sort({
-      item_id: 'ascending',
+      itemId: 'ascending',
     })
   response.json(items)
 })
@@ -21,13 +21,13 @@ upcomingSermonsRouter.post('/', middleware.userExtractor, async (request, respon
     await Item
       .findOne({
         page: 'home',
-        sectionName: 'Upcoming Sermons'
+        sectionName: 'upcoming-sermons'
       })
-      .sort('-item_id')
-  ).item_id
+      .sort('-itemId')
+  ).itemId
 
   const upcomingSermon = new Item({
-    item_id: maxItemId + 1,
+    itemId: maxItemId + 1,
     page: body.page,
     sectionName: body.sectionName,
     title: body.title,

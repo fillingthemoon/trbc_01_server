@@ -6,10 +6,10 @@ ourHistoryRouter.get('/', async (request, response) => {
   const items = await Item
     .find({
       page: 'our-history',
-      sectionName: 'Our History'
+      sectionName: 'our-history'
     })
     .sort({
-      item_id: 'ascending',
+      itemId: 'ascending',
     })
   response.json(items)
 })

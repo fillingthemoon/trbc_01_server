@@ -30,7 +30,7 @@ const detailsSchema = {
 }
 
 const itemSchema = new mongoose.Schema({
-  item_id: {
+  itemId: {
     type: Number,
     required: true,
   },
@@ -42,7 +42,10 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  congre: {
+  service: {
+    type: String,
+  },
+  serviceAcronym: {
     type: String,
   },
   title: {
