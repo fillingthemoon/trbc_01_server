@@ -20,7 +20,7 @@ upcomingSermonsRouter.get('/:langId', async (request, response) => {
   response.json(items)
 })
 
-// May need to edit this
+// Returns null if the item's id doesn't exist
 upcomingSermonsRouter.post('/:langId', middleware.userExtractor, async (request, response) => {
   if (!['en', 'ch'].includes(request.params.langId)) {
     response.status(404).send({ error: 'error 404: unknown endpoint' })

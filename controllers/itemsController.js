@@ -17,7 +17,7 @@ itemsRouter.get('/all/:langId', async (request, response) => {
   response.json(items)
 })
 
-// Adding :langId to the end may not work for this one
+// Returns null if the item's id doesn't exist
 itemsRouter.get('/item/:id/:langId', async (request, response) => {
   if (!['en', 'ch'].includes(request.params.langId)) {
     response.status(404).send({ error: 'error 404: unknown endpoint' })
@@ -30,8 +30,8 @@ itemsRouter.get('/item/:id/:langId', async (request, response) => {
   response.json(item)
 })
 
-// Can just use English for this
-itemsRouter.get('/pages/', async (request, response) => {
+// Can just use English :langId for this
+itemsRouter.get('/pages/:langId', async (request, response) => {
   const items = await Enitem
     .aggregate([
       {
