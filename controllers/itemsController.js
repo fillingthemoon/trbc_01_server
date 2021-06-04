@@ -1,9 +1,9 @@
 const itemsRouter = require('express').Router()
-const { Item } = require('../models/itemModel')
+const { Enitem, Chitem } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 itemsRouter.get('/', async (request, response) => {
-  const items = await Item
+  const items = await Enitem
     .find({})
     .sort({
       itemId: 'ascending',
@@ -12,13 +12,13 @@ itemsRouter.get('/', async (request, response) => {
 })
 
 itemsRouter.get('/item/:id', async (request, response) => {
-  const item = await Item
+  const item = await Enitem
     .findById(request.params.id)
   response.json(item)
 })
 
 itemsRouter.get('/pages/', async (request, response) => {
-  const items = await Item
+  const items = await Enitem
     .aggregate([
       {
         $group: {

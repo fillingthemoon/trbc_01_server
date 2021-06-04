@@ -1,9 +1,9 @@
 const discipleshipRouter = require('express').Router()
-const { Item } = require('../models/itemModel')
+const { Enitem, Chitem } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 discipleshipRouter.get('/', async (request, response) => {
-  const items = await Item
+  const items = await Enitem
     .find({
       page: 'discipleship',
       sectionName: 'discipleship'

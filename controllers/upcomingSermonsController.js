@@ -1,9 +1,9 @@
 const upcomingSermonsRouter = require('express').Router()
-const { Item } = require('../models/itemModel')
+const { Enitem, Chitem } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 upcomingSermonsRouter.get('/', async (request, response) => {
-  const items = await Item
+  const items = await Enitem
     .find({
       page: 'home',
       sectionName: 'upcoming-sermons'
@@ -18,7 +18,7 @@ upcomingSermonsRouter.post('/', middleware.userExtractor, async (request, respon
   const body = request.body
 
   const maxItemId = (
-    await Item
+    await Enitem
       .findOne({
         page: 'home',
         sectionName: 'upcoming-sermons'
@@ -43,12 +43,12 @@ upcomingSermonsRouter.post('/', middleware.userExtractor, async (request, respon
 upcomingSermonsRouter.put('/:id', middleware.userExtractor, async (request, response) => {
   const upcomingSermon = request.body
 
-  const result = await Item.findByIdAndUpdate(request.params.id, upcomingSermon, { new: true })
+  const result = await Enitem.findByIdAndUpdate(request.params.id, upcomingSermon, { new: true })
   response.json(result)
 })
 
 upcomingSermonsRouter.delete('/:id', middleware.userExtractor, async (request, response) => {
-  await Item.findByIdAndRemove(request.params.id)
+  await Enitem.findByIdAndRemove(request.params.id)
   response.status(204).send()
 })
 

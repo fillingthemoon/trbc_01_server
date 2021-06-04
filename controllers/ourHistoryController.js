@@ -1,9 +1,9 @@
 const ourHistoryRouter = require('express').Router()
-const { Item } = require('../models/itemModel')
+const { Enitem, Chitem } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 ourHistoryRouter.get('/', async (request, response) => {
-  const items = await Item
+  const items = await Enitem
     .find({
       page: 'our-history',
       sectionName: 'our-history'

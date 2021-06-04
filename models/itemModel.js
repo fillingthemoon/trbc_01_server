@@ -76,12 +76,12 @@ itemSchema.set('toJSON', {
 })
 
 // English Items
-const Item = mongoose.model('Enitem', itemSchema)
+const Enitem = mongoose.model('Enitem', itemSchema)
 
 // Chinese Item
 const Chitem = mongoose.model('Chitem', itemSchema)
 
 module.exports = {
-  Item,
+  Enitem,
   Chitem,
 }
