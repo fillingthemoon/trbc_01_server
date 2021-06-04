@@ -2,8 +2,14 @@ const itemsRouter = require('express').Router()
 const { Enitem, Chitem } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
-itemsRouter.get('/', async (request, response) => {
-  const items = await Enitem
+itemsRouter.get('/:langId', async (request, response) => {
+  if (!['en', 'ch'].includes(request.params.langId)) {
+    response.status(404).send({ error: 'error 404: unknown endpoint' })
+  }
+
+  const Item = request.params.langId === 'ch' ? Chitem : Enitem
+
+  const items = await Item
     .find({})
     .sort({
       itemId: 'ascending',
@@ -11,8 +17,15 @@ itemsRouter.get('/', async (request, response) => {
   response.json(items)
 })
 
-itemsRouter.get('/item/:id', async (request, response) => {
-  const item = await Enitem
+// Adding :langId to the end may not work for this one
+itemsRouter.get('/item/:id/:langId', async (request, response) => {
+  if (!['en', 'ch'].includes(request.params.langId)) {
+    response.status(404).send({ error: 'error 404: unknown endpoint' })
+  }
+
+  const Item = request.params.langId === 'ch' ? Chitem : Enitem
+
+  const item = await Item
     .findById(request.params.id)
   response.json(item)
 })

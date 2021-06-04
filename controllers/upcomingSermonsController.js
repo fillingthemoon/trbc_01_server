@@ -2,8 +2,14 @@ const upcomingSermonsRouter = require('express').Router()
 const { Enitem, Chitem } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
-upcomingSermonsRouter.get('/', async (request, response) => {
-  const items = await Enitem
+upcomingSermonsRouter.get('/:langId', async (request, response) => {
+  if (!['en', 'ch'].includes(request.params.langId)) {
+    response.status(404).send({ error: 'error 404: unknown endpoint' })
+  }
+
+  const Item = request.params.langId === 'ch' ? Chitem : Enitem
+
+  const items = await Item
     .find({
       page: 'home',
       sectionName: 'upcoming-sermons'
@@ -14,11 +20,18 @@ upcomingSermonsRouter.get('/', async (request, response) => {
   response.json(items)
 })
 
-upcomingSermonsRouter.post('/', middleware.userExtractor, async (request, response) => {
+// May need to edit this
+upcomingSermonsRouter.post('/:langId', middleware.userExtractor, async (request, response) => {
+  if (!['en', 'ch'].includes(request.params.langId)) {
+    response.status(404).send({ error: 'error 404: unknown endpoint' })
+  }
+
+  const Item = request.params.langId === 'ch' ? Chitem : Enitem
+
   const body = request.body
 
   const maxItemId = (
-    await Enitem
+    await Item
       .findOne({
         page: 'home',
         sectionName: 'upcoming-sermons'
@@ -40,15 +53,27 @@ upcomingSermonsRouter.post('/', middleware.userExtractor, async (request, respon
   response.status(201).json(savedUpcomingSermon)
 })
 
-upcomingSermonsRouter.put('/:id', middleware.userExtractor, async (request, response) => {
+upcomingSermonsRouter.put('/:id/:langId', middleware.userExtractor, async (request, response) => {
+  if (!['en', 'ch'].includes(request.params.langId)) {
+    response.status(404).send({ error: 'error 404: unknown endpoint' })
+  }
+
+  const Item = request.params.langId === 'ch' ? Chitem : Enitem
+
   const upcomingSermon = request.body
 
-  const result = await Enitem.findByIdAndUpdate(request.params.id, upcomingSermon, { new: true })
+  const result = await Item.findByIdAndUpdate(request.params.id, upcomingSermon, { new: true })
   response.json(result)
 })
 
-upcomingSermonsRouter.delete('/:id', middleware.userExtractor, async (request, response) => {
-  await Enitem.findByIdAndRemove(request.params.id)
+upcomingSermonsRouter.delete('/:id/:langId', middleware.userExtractor, async (request, response) => {
+  if (!['en', 'ch'].includes(request.params.langId)) {
+    response.status(404).send({ error: 'error 404: unknown endpoint' })
+  }
+
+  const Item = request.params.langId === 'ch' ? Chitem : Enitem
+
+  await Item.findByIdAndRemove(request.params.id)
   response.status(204).send()
 })
 
