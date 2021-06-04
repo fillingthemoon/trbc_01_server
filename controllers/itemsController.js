@@ -2,7 +2,7 @@ const itemsRouter = require('express').Router()
 const { Enitem, Chitem } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
-itemsRouter.get('/:langId', async (request, response) => {
+itemsRouter.get('/all/:langId', async (request, response) => {
   if (!['en', 'ch'].includes(request.params.langId)) {
     response.status(404).send({ error: 'error 404: unknown endpoint' })
   }
