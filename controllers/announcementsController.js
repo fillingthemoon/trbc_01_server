@@ -1,5 +1,5 @@
 const announcementsRouter = require('express').Router()
-const Item = require('../models/itemModel')
+const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 announcementsRouter.get('/', async (request, response) => {

@@ -1,5 +1,5 @@
 const ourTeamRouter = require('express').Router()
-const Item = require('../models/itemModel')
+const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 ourTeamRouter.get('/', async (request, response) => {

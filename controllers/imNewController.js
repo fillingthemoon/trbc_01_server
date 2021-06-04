@@ -1,5 +1,5 @@
 const imNewRouter = require('express').Router()
-const Item = require('../models/itemModel')
+const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 imNewRouter.get('/', async (request, response) => {

@@ -1,5 +1,5 @@
 const ourHistoryRouter = require('express').Router()
-const Item = require('../models/itemModel')
+const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 ourHistoryRouter.get('/', async (request, response) => {

@@ -1,5 +1,5 @@
 const statementOfFaithRouter = require('express').Router()
-const Item = require('../models/itemModel')
+const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 statementOfFaithRouter.get('/', async (request, response) => {

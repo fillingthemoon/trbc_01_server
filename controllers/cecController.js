@@ -1,5 +1,5 @@
 const cecRouter = require('express').Router()
-const Item = require('../models/itemModel')
+const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 cecRouter.get('/', async (request, response) => {

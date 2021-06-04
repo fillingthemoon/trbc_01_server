@@ -1,5 +1,5 @@
 const itemsRouter = require('express').Router()
-const Item = require('../models/itemModel')
+const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 itemsRouter.get('/', async (request, response) => {
@@ -27,7 +27,7 @@ itemsRouter.get('/pages/', async (request, response) => {
       },
       {
         $lookup: {
-          from: 'items',
+          from: 'enitems', // Need to change this when changing collection names!
           let: { page: '$_id' }, // localField
 
           // pipeline to manage lookup-data ()

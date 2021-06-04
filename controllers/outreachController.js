@@ -1,5 +1,5 @@
 const outreachRouter = require('express').Router()
-const Item = require('../models/itemModel')
+const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 outreachRouter.get('/', async (request, response) => {

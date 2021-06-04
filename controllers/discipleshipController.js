@@ -1,5 +1,5 @@
 const discipleshipRouter = require('express').Router()
-const Item = require('../models/itemModel')
+const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
 discipleshipRouter.get('/', async (request, response) => {
