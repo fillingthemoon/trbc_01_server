@@ -47,9 +47,8 @@ upcomingSermonsRouter.post('/:langId', middleware.userExtractor, async (request,
     itemId: maxItemId + 1,
     page: body.page,
     pageSection: body.pageSection,
-    title: body.title,
-    text: body.text,
-    details: body.details,
+    itemEn: body.itemEn,
+    itemCh: body.itemCh,
   })
 
   const savedUpcomingSermon = await upcomingSermon.save()
