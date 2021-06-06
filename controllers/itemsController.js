@@ -15,9 +15,9 @@ itemsRouter.get('/all/:langId', async (request, response) => {
 
   // Get either english or chinese data depending on request.params.langId
   const filteredItems = items.map(item => {
-    const { _id, page, pageSection, ...rest } = item
+    const { id, page, pageSection, ...rest } = item
     const langItem = request.params.langId === 'en' ? item.itemEn : item.itemCh
-    return { _id, page, pageSection, ...langItem }
+    return { id, page, pageSection, ...langItem }
   })
 
   response.json(filteredItems)
@@ -33,9 +33,9 @@ itemsRouter.get('/item/:id/:langId', async (request, response) => {
     .findById(request.params.id)
 
   // Get either english or chinese data depending on request.params.langId
-  const { _id, page, pageSection, ...rest } = item
+  const { id, page, pageSection, ...rest } = item
   const langItem = request.params.langId === 'en' ? item.itemEn : item.itemCh
-  const filteredItem = { _id, page, pageSection, ...langItem }
+  const filteredItem = { id, page, pageSection, ...langItem }
 
   response.json(filteredItem)
 })
