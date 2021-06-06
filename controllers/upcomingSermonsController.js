@@ -27,11 +27,7 @@ upcomingSermonsRouter.get('/:langId', async (request, response) => {
 })
 
 // Returns null if the item's id doesn't exist
-upcomingSermonsRouter.post('/:langId', middleware.userExtractor, async (request, response) => {
-  if (!['en', 'ch'].includes(request.params.langId)) {
-    response.status(404).send({ error: 'error 404: unknown endpoint' })
-  }
-
+upcomingSermonsRouter.post('/', middleware.userExtractor, async (request, response) => {
   const body = request.body
 
   const maxItemId = (
@@ -56,22 +52,14 @@ upcomingSermonsRouter.post('/:langId', middleware.userExtractor, async (request,
   response.status(201).json(savedUpcomingSermon)
 })
 
-upcomingSermonsRouter.put('/:id/:langId', middleware.userExtractor, async (request, response) => {
-  if (!['en', 'ch'].includes(request.params.langId)) {
-    response.status(404).send({ error: 'error 404: unknown endpoint' })
-  }
-
+upcomingSermonsRouter.put('/:id/', middleware.userExtractor, async (request, response) => {
   const upcomingSermon = request.body
 
   const result = await Item.findByIdAndUpdate(request.params.id, upcomingSermon, { new: true })
   response.json(result)
 })
 
-upcomingSermonsRouter.delete('/:id/:langId', middleware.userExtractor, async (request, response) => {
-  if (!['en', 'ch'].includes(request.params.langId)) {
-    response.status(404).send({ error: 'error 404: unknown endpoint' })
-  }
-
+upcomingSermonsRouter.delete('/:id/', middleware.userExtractor, async (request, response) => {
   await Item.findByIdAndRemove(request.params.id)
   response.status(204).send()
 })
