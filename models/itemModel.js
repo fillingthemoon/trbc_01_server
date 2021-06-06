@@ -29,19 +29,7 @@ const detailsSchema = {
   },
 }
 
-const itemSchema = new mongoose.Schema({
-  itemId: {
-    type: Number,
-    required: true,
-  },
-  page: {
-    type: String,
-    required: true,
-  },
-  pageSection: {
-    type: String,
-    required: true,
-  },
+const langItems = {
   service: {
     type: String,
   },
@@ -64,6 +52,53 @@ const itemSchema = new mongoose.Schema({
   },
   link: {
     type: linkSchema,
+  },
+}
+
+const itemEnSchema = new mongoose.Schema({
+  pageEn: {
+    type: String,
+    required: true,
+  },
+  pageSectionEn: {
+    type: String,
+    required: true,
+  },
+  ...langItems,
+})
+
+const itemChSchema = new mongoose.Schema({
+  pageCh: {
+    type: String,
+    required: true,
+  },
+  pageSectionCh: {
+    type: String,
+    required: true,
+  },
+  ...langItems,
+})
+
+const itemSchema = new mongoose.Schema({
+  itemId: {
+    type: Number,
+    required: true,
+  },
+  page: {
+    type: String,
+    required: true,
+  },
+  pageSection: {
+    type: String,
+    required: true,
+  },
+  itemEn: {
+    type: itemEnSchema,
+    required: true,
+  },
+  itemCh: {
+    type: itemChSchema,
+    required: true,
   },
 })
 
