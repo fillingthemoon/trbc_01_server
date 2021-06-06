@@ -5,8 +5,7 @@ node_modules
 serviceAccountKey.json
 
 mongodb-import-cmds.txt
-data-en-json
-data-ch-json
+data-json
 mongodb-import-data.sh
 
 requests
