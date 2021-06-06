@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const linkSchema = {
+const link = {
   path: {
     type: String,
     required: true
@@ -11,7 +11,7 @@ const linkSchema = {
   },
 }
 
-const detailsSchema = {
+const details = {
   date: {
     type: String,
   },
@@ -45,17 +45,17 @@ const langItems = {
     required: true,
   },
   details: {
-    type: detailsSchema,
+    type: details,
   },
   imgSrc: {
     type: String,
   },
   link: {
-    type: linkSchema,
+    type: link,
   },
 }
 
-const itemEnSchema = new mongoose.Schema({
+const itemEn = {
   pageEn: {
     type: String,
     required: true,
@@ -65,9 +65,9 @@ const itemEnSchema = new mongoose.Schema({
     required: true,
   },
   ...langItems,
-})
+}
 
-const itemChSchema = new mongoose.Schema({
+const itemCh = {
   pageCh: {
     type: String,
     required: true,
@@ -77,7 +77,7 @@ const itemChSchema = new mongoose.Schema({
     required: true,
   },
   ...langItems,
-})
+}
 
 const itemSchema = new mongoose.Schema({
   itemId: {
@@ -93,11 +93,11 @@ const itemSchema = new mongoose.Schema({
     required: true,
   },
   itemEn: {
-    type: itemEnSchema,
+    type: itemEn,
     required: true,
   },
   itemCh: {
-    type: itemChSchema,
+    type: itemCh,
     required: true,
   },
 })
