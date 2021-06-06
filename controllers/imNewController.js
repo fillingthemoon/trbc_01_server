@@ -10,7 +10,7 @@ imNewRouter.get('/:langId', async (request, response) => {
   const items = await Item
     .find({
       page: 'im-new',
-      sectionName: 'im-new'
+      pageSection: 'im-new'
     })
     .sort({
       itemId: 'ascending',

@@ -10,7 +10,7 @@ announcementsRouter.get('/:langId', async (request, response) => {
   const items = await Item
     .find({
       page: 'home',
-      sectionName: 'announcements'
+      pageSection: 'announcements'
     })
     .sort({
       itemId: 'ascending',

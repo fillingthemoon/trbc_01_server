@@ -10,7 +10,7 @@ missionsRouter.get('/:langId', async (request, response) => {
   const items = await Item
     .find({
       page: 'missions',
-      sectionName: 'missions'
+      pageSection: 'missions'
     })
     .sort({
       itemId: 'ascending',

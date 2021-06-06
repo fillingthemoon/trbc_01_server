@@ -10,7 +10,7 @@ cecRouter.get('/:langId', async (request, response) => {
   const items = await Item
     .find({
       page: 'cec',
-      sectionName: 'cec'
+      pageSection: 'cec'
     })
     .sort({
       itemId: 'ascending',

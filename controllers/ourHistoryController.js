@@ -10,7 +10,7 @@ ourHistoryRouter.get('/:langId', async (request, response) => {
   const items = await Item
     .find({
       page: 'our-history',
-      sectionName: 'our-history'
+      pageSection: 'our-history'
     })
     .sort({
       itemId: 'ascending',

@@ -10,7 +10,7 @@ discipleshipRouter.get('/:langId', async (request, response) => {
   const items = await Item
     .find({
       page: 'discipleship',
-      sectionName: 'discipleship'
+      pageSection: 'discipleship'
     })
     .sort({
       itemId: 'ascending',

@@ -38,7 +38,7 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  sectionName: {
+  pageSection: {
     type: String,
     required: true,
   },

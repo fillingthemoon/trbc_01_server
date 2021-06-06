@@ -51,9 +51,9 @@ itemsRouter.get('/pages/:langId', async (request, response) => {
               }
             },
             {
-              // group by sectionName
+              // group by pageSection
               $group: {
-                _id: '$sectionName',
+                _id: '$pageSection',
               }
             },
             {

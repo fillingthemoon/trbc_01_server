@@ -10,7 +10,7 @@ eventsRouter.get('/:langId', async (request, response) => {
   const items = await Item
     .find({
       page: 'home',
-      sectionName: 'events'
+      pageSection: 'events'
     })
     .sort({
       itemId: 'ascending',

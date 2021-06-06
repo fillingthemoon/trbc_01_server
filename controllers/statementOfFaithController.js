@@ -10,7 +10,7 @@ statementOfFaithRouter.get('/:langId', async (request, response) => {
   const items = await Item
     .find({
       page: 'statement-of-faith',
-      sectionName: 'statement-of-faith'
+      pageSection: 'statement-of-faith'
     })
     .sort({
       itemId: 'ascending',
