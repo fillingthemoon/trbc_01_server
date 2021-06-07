@@ -2,6 +2,8 @@ const itemsRouter = require('express').Router()
 const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
+const { filterItemByLanguage, filterItemsByLanguage } = require('../helper-files/helperFunctions')
+
 itemsRouter.get('/all/:langId', async (request, response) => {
   if (!['en', 'ch'].includes(request.params.langId)) {
     response.status(404).send({ error: 'error 404: unknown endpoint' })
@@ -14,11 +16,7 @@ itemsRouter.get('/all/:langId', async (request, response) => {
     })
 
   // Get either english or chinese data depending on request.params.langId
-  const filteredItems = items.map(item => {
-    const { id, page, pageSection, ...rest } = item
-    const langItem = request.params.langId === 'en' ? item.itemEn : item.itemCh
-    return { id, page, pageSection, ...langItem }
-  })
+  const filteredItems = filterItemsByLanguage(items, request.params.langId)
 
   response.json(filteredItems)
 })
@@ -33,9 +31,7 @@ itemsRouter.get('/item/:id/:langId', async (request, response) => {
     .findById(request.params.id)
 
   // Get either english or chinese data depending on request.params.langId
-  const { id, page, pageSection, ...rest } = item
-  const langItem = request.params.langId === 'en' ? item.itemEn : item.itemCh
-  const filteredItem = { id, page, pageSection, ...langItem }
+  const filteredItem = filterItemByLanguage(item, request.params.langId)
 
   response.json(filteredItem)
 })
