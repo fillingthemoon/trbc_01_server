@@ -11,6 +11,7 @@ const link = {
   },
 }
 
+// Need to update AddNewRow.js when more items are added to details
 const details = {
   date: {
     type: String,

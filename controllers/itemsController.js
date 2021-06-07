@@ -45,6 +45,8 @@ itemsRouter.get('/pages/:langId', async (request, response) => {
     response.status(404).send({ error: 'error 404: unknown endpoint' })
   }
 
+  // Might need to hardcode pages/pageSections to avoid their deletion if no content
+
   const items = await Item
     .aggregate([
       {
@@ -89,6 +91,7 @@ itemsRouter.get('/pages/:langId', async (request, response) => {
         }
       }
     ])
+
   response.json(items)
 })
 

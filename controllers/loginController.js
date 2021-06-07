@@ -26,7 +26,7 @@ loginRouter.post('/', async (request, response) => {
   const token = jwt.sign(
     userForToken,
     process.env.TOKEN_SECRET,
-    { expiresIn: 60*60 }
+    { expiresIn: (60 * 60) * 2 }
   )
 
   response
