@@ -1,3 +1,5 @@
+/* Keep updated with client/helper-files/itemModel.js */
+
 const mongoose = require('mongoose')
 
 const link = {
