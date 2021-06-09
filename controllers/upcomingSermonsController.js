@@ -2,7 +2,7 @@ const upcomingSermonsRouter = require('express').Router()
 const { Item } = require('../models/itemModel')
 const middleware = require('../utils/middleware')
 
-const { filterItemsByLanguage } = require('../helper-files/helperFunctions')
+const { filterItemByLanguage, filterItemsByLanguage } = require('../helper-files/helperFunctions')
 
 upcomingSermonsRouter.get('/:langId', async (request, response) => {
   if (!['en', 'ch'].includes(request.params.langId)) {
@@ -25,7 +25,11 @@ upcomingSermonsRouter.get('/:langId', async (request, response) => {
 })
 
 // Returns null if the item's id doesn't exist
-upcomingSermonsRouter.post('/', middleware.userExtractor, async (request, response) => {
+upcomingSermonsRouter.post('/:langId', middleware.userExtractor, async (request, response) => {
+  if (!['en', 'ch'].includes(request.params.langId)) {
+    response.status(404).send({ error: 'error 404: unknown endpoint' })
+  }
+
   const body = request.body
 
   const maxItemId = (
@@ -47,14 +51,27 @@ upcomingSermonsRouter.post('/', middleware.userExtractor, async (request, respon
 
   const savedUpcomingSermon = await upcomingSermon.save()
 
-  response.status(201).json(savedUpcomingSermon)
+  // Get either english or chinese data depending on request.params.langId
+  const filteredItem = filterItemByLanguage(savedUpcomingSermon, request.params.langId)
+
+  response.status(201).json(filteredItem)
 })
 
-upcomingSermonsRouter.put('/:id/', middleware.userExtractor, async (request, response) => {
-  const upcomingSermon = request.body
+upcomingSermonsRouter.put('/:id/:langId', middleware.userExtractor, async (request, response) => {
+  if (!['en', 'ch'].includes(request.params.langId)) {
+    response.status(404).send({ error: 'error 404: unknown endpoint' })
+  }
 
-  const result = await Item.findByIdAndUpdate(request.params.id, upcomingSermon, { new: true })
-  response.json(result)
+  const updatedUpcomingSermon = request.body
+
+  console.log(updatedUpcomingSermon)
+
+  const updatedItem = await Item.findByIdAndUpdate(request.params.id, updatedUpcomingSermon, { new: true })
+
+  // Get either english or chinese data depending on request.params.langId
+  const filteredItem = filterItemByLanguage(updatedItem, request.params.langId)
+
+  response.json(filteredItem)
 })
 
 upcomingSermonsRouter.delete('/:id/', middleware.userExtractor, async (request, response) => {
