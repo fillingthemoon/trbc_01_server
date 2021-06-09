@@ -64,8 +64,6 @@ upcomingSermonsRouter.put('/:id/:langId', middleware.userExtractor, async (reque
 
   const updatedUpcomingSermon = request.body
 
-  console.log(updatedUpcomingSermon)
-
   const updatedItem = await Item.findByIdAndUpdate(request.params.id, updatedUpcomingSermon, { new: true })
 
   // Get either english or chinese data depending on request.params.langId
