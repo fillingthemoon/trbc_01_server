@@ -41,52 +41,30 @@ itemsRouter.get('/pages/:langId', async (request, response) => {
     response.status(404).send({ error: 'error 404: unknown endpoint' })
   }
 
-  // Might need to hardcode pages/pageSections to avoid their deletion if no content
+  // Hardcode pages/pageSections to avoid missing out on them if 0 data available
+  const itemsCondensed = {
+    'church-wide': ['interest-groups', 'second-language-classes'],
+    'discipleship': ['discipleship'],
+    'home': ['announcements', 'events', 'upcoming-sermons'],
+    'im-new': ['im-new'],
+    'missions': ['missions'],
+    'our-history': ['our-history'],
+    'our-team': ['administrative', 'ministry', 'pastoral'],
+    'outreach': ['outreach'],
+    'services': ['english-service', 'sunset-service-english-mandarin', 'teo-chew-chinese-service'],
+    'statement-of-faith': ['statement-of-faith'],
+  }
 
-  const items = await Item
-    .aggregate([
-      {
-        $group: {
-          _id: '$page'
+  const items = Object.keys(itemsCondensed).map(page => {
+    return {
+      _id: page,
+      pageSections: itemsCondensed[page].map(pageSection => {
+        return {
+          _id: pageSection
         }
-      },
-      {
-        $lookup: {
-          from: 'items',
-          let: { page: '$_id' }, // localField
-
-          // pipeline to manage lookup-data ()
-          pipeline: [
-            {
-              $match: {
-                $expr: {
-                  // $page is foreignField
-                  // $$page is localField
-                  $eq: ['$page', '$$page']
-                }
-              }
-            },
-            {
-              // group by pageSection
-              $group: {
-                _id: '$pageSection',
-              }
-            },
-            {
-              $sort: {
-                _id: 1,
-              }
-            },
-          ],
-          as: 'items',
-        },
-      },
-      {
-        $sort: {
-          _id: 1,
-        }
-      }
-    ])
+      })
+    }
+  })
 
   response.json(items)
 })
