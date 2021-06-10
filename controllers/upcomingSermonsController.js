@@ -32,17 +32,17 @@ upcomingSermonsRouter.post('/:langId', middleware.userExtractor, async (request,
 
   const body = request.body
 
-  const maxItemId = (
+  const itemWithMaxId = (
     await Item
       .findOne({
         page: 'home',
         pageSection: 'upcoming-sermons'
       })
       .sort('-itemId')
-  ).itemId
+  )
 
   const upcomingSermon = new Item({
-    itemId: maxItemId + 1,
+    itemId: itemWithMaxId ? itemWithMaxId.itemId + 1 : 1,
     page: body.page,
     pageSection: body.pageSection,
     itemEn: body.itemEn,
