@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+// either Heroku's process.env or server/.env
 const PORT = process.env.PORT
 
 const MONGODB_URI = process.env.NODE_ENV === 'test'
