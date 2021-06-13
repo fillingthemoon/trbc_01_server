@@ -1,13 +1,13 @@
-/* Keep updated with client/helper-files/itemModel.js */
+/* Keep updated with client/models/itemModel.js */
 
 const mongoose = require('mongoose')
 
 const link = {
-  path: {
+  linkPath: {
     type: String,
     required: true
   },
-  text: {
+  linkText: {
     type: String,
     required: true
   },

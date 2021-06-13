@@ -12,7 +12,7 @@ upcomingSermonsRouter.get('/:langId', async (request, response) => {
   const items = await Item
     .find({
       page: 'home',
-      pageSection: 'upcoming-sermons'
+      pageSection: 'upcoming-sermons',
     })
     .sort({
       itemId: 'ascending',
