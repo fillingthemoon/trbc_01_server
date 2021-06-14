@@ -70,4 +70,9 @@ statementOfFaithRouter.put('/:id/:langId', middleware.userExtractor, async (requ
   response.json(filteredItem)
 })
 
+statementOfFaithRouter.delete('/:id/', middleware.userExtractor, async (request, response) => {
+  await Item.findByIdAndRemove(request.params.id)
+  response.status(204).send()
+})
+
 module.exports = statementOfFaithRouter

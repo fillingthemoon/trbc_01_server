@@ -70,4 +70,9 @@ churchWideRouter.put('/:id/:langId', middleware.userExtractor, async (request, r
   response.json(filteredItem)
 })
 
+churchWideRouter.delete('/:id/', middleware.userExtractor, async (request, response) => {
+  await Item.findByIdAndRemove(request.params.id)
+  response.status(204).send()
+})
+
 module.exports = churchWideRouter

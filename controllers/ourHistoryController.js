@@ -70,4 +70,9 @@ ourHistoryRouter.put('/:id/:langId', middleware.userExtractor, async (request, r
   response.json(filteredItem)
 })
 
+ourHistoryRouter.delete('/:id/', middleware.userExtractor, async (request, response) => {
+  await Item.findByIdAndRemove(request.params.id)
+  response.status(204).send()
+})
+
 module.exports = ourHistoryRouter

@@ -69,4 +69,9 @@ ourTeamRouter.put('/:id/:langId', middleware.userExtractor, async (request, resp
   response.json(filteredItem)
 })
 
+ourTeamRouter.delete('/:id/', middleware.userExtractor, async (request, response) => {
+  await Item.findByIdAndRemove(request.params.id)
+  response.status(204).send()
+})
+
 module.exports = ourTeamRouter
