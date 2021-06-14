@@ -55,4 +55,19 @@ churchWideRouter.post('/:langId', middleware.userExtractor, async (request, resp
   response.status(201).json(filteredItem)
 })
 
+churchWideRouter.put('/:id/:langId', middleware.userExtractor, async (request, response) => {
+  if (!['en', 'ch'].includes(request.params.langId)) {
+    response.status(404).send({ error: 'error 404: unknown endpoint' })
+  }
+
+  const updatedChurchWide = request.body
+
+  const updatedItem = await Item.findByIdAndUpdate(request.params.id, updatedChurchWide, { new: true })
+
+  // Get either english or chinese data depending on request.params.langId
+  const filteredItem = filterItemByLanguage(updatedItem, request.params.langId)
+
+  response.json(filteredItem)
+})
+
 module.exports = churchWideRouter
