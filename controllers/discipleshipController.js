@@ -39,7 +39,7 @@ discipleshipRouter.post('/:langId', middleware.userExtractor, async (request, re
       .sort('-itemId')
   )
 
-  const churchWide = new Item({
+  const discipleship = new Item({
     itemId: itemWithMaxId ? itemWithMaxId.itemId + 1 : 1,
     page: body.page,
     pageSection: body.pageSection,
@@ -47,10 +47,10 @@ discipleshipRouter.post('/:langId', middleware.userExtractor, async (request, re
     itemCh: body.itemCh,
   })
 
-  const savedChurchWide = await churchWide.save()
+  const savedDiscipleship = await discipleship.save()
 
   // Get either english or chinese data depending on request.params.langId
-  const filteredItem = filterItemByLanguage(savedChurchWide, request.params.langId)
+  const filteredItem = filterItemByLanguage(savedDiscipleship, request.params.langId)
 
   response.status(201).json(filteredItem)
 })

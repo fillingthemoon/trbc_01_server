@@ -40,7 +40,7 @@ announcementsRouter.post('/:langId', middleware.userExtractor, async (request, r
       .sort('-itemId')
   )
 
-  const churchWide = new Item({
+  const announcement = new Item({
     itemId: itemWithMaxId ? itemWithMaxId.itemId + 1 : 1,
     page: body.page,
     pageSection: body.pageSection,
@@ -48,10 +48,10 @@ announcementsRouter.post('/:langId', middleware.userExtractor, async (request, r
     itemCh: body.itemCh,
   })
 
-  const savedChurchWide = await churchWide.save()
+  const savedAnnouncement = await announcement.save()
 
   // Get either english or chinese data depending on request.params.langId
-  const filteredItem = filterItemByLanguage(savedChurchWide, request.params.langId)
+  const filteredItem = filterItemByLanguage(savedAnnouncement, request.params.langId)
 
   response.status(201).json(filteredItem)
 })

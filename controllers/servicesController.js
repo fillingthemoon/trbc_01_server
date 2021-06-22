@@ -38,7 +38,7 @@ servicesRouter.post('/:langId', middleware.userExtractor, async (request, respon
       .sort('-itemId')
   )
 
-  const churchWide = new Item({
+  const service = new Item({
     itemId: itemWithMaxId ? itemWithMaxId.itemId + 1 : 1,
     page: body.page,
     pageSection: body.pageSection,
@@ -46,10 +46,10 @@ servicesRouter.post('/:langId', middleware.userExtractor, async (request, respon
     itemCh: body.itemCh,
   })
 
-  const savedChurchWide = await churchWide.save()
+  const savedService = await service.save()
 
   // Get either english or chinese data depending on request.params.langId
-  const filteredItem = filterItemByLanguage(savedChurchWide, request.params.langId)
+  const filteredItem = filterItemByLanguage(savedService, request.params.langId)
 
   response.status(201).json(filteredItem)
 })
