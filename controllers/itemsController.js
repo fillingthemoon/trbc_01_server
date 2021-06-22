@@ -43,7 +43,6 @@ itemsRouter.get('/pages/:langId', async (request, response) => {
 
   // Hardcode pages/pageSections to avoid missing out on them if 0 data available
   const itemsCondensed = {
-    'church-wide': ['interest-groups', 'second-language-classes'],
     'discipleship': ['discipleship'],
     'home': ['announcements', 'events', 'upcoming-sermons'],
     'im-new': ['im-new'],
