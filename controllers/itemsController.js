@@ -45,7 +45,6 @@ itemsRouter.get('/pages/:langId', async (request, response) => {
   const itemsCondensed = {
     'discipleship': ['discipleship'],
     'home': ['announcements', 'events', 'upcoming-sermons'],
-    'im-new': ['im-new'],
     'missions': ['missions'],
     'our-history': ['our-history'],
     'our-team': ['administrative', 'ministry', 'pastoral'],
