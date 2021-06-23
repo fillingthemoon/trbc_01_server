@@ -6,6 +6,8 @@ serviceAccountKey.json
 
 mongodb-import-cmds.txt
 data-json
+data-backup
 mongodb-import-data.sh
+mongodb-export-data.sh
 
 requests
