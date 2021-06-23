@@ -30,6 +30,15 @@ const details = {
   passage: {
     type: String,
   },
+  type: {
+    type: String,
+  },
+  keyResponsibilities: {
+    type: String,
+  },
+  requirements: {
+    type: String,
+  },
 }
 
 const langItems = {
