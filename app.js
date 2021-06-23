@@ -60,11 +60,6 @@ app.use('/api/services', servicesRouter)
 app.use('/api/statement-of-faith', statementOfFaithRouter)
 app.use('/api/upcoming-sermons', upcomingSermonsRouter)
 
-// if (process.env.NODE_ENV === 'test') {
-//   const testingRouter = require('./controllers/testing')
-//   app.use('/api/testing', testingRouter)
-// }
-
 app.use(middleware.requestLogger)
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
