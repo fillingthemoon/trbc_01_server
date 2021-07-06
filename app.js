@@ -64,6 +64,4 @@ app.use(middleware.requestLogger)
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
-app.use(middleware.enforceHttps)
-
 module.exports = app
