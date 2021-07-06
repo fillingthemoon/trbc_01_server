@@ -1,8 +1,11 @@
 const config = require('./utils/config')
 const express = require('express')
+const sslRedirect = require('heroku-ssl-redirect').default
 require('express-async-errors') // To handle express async errors
 const app = express()
 const cors = require('cors')
+
+app.use(sslRedirect())
 
 app.use(express.static('build')) // For backend to draw client files from build
 
