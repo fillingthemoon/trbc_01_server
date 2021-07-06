@@ -6,6 +6,10 @@ const cors = require('cors')
 
 app.use(express.static('build')) // For backend to draw client files from build
 
+app.get('*', function(req, res) {  
+  res.redirect('https://' + req.headers.host + req.url);
+})
+
 // Routers
 const loginRouter = require('./controllers/loginController')
 const usersRouter = require('./controllers/usersController')
