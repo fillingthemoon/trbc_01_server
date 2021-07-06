@@ -5,7 +5,7 @@ require('express-async-errors') // To handle express async errors
 const app = express()
 const cors = require('cors')
 
-app.use(sslRedirect())
+app.use(sslRedirect()) // Redirect all http to https
 
 app.use(express.static('build')) // For backend to draw client files from build
 
