@@ -2,17 +2,6 @@
 
 const mongoose = require('mongoose')
 
-const link = {
-  linkPath: {
-    type: String,
-    required: true
-  },
-  linkText: {
-    type: String,
-    required: true
-  },
-}
-
 // Need to update AddNewRow.js when more items are added to details
 const details = {
   date: {
@@ -39,6 +28,12 @@ const details = {
   requirements: {
     type: String,
   },
+  linkPath: {
+    type: String,
+  },
+  linkText: {
+    type: String,
+  },
 }
 
 const langItems = {
@@ -61,9 +56,6 @@ const langItems = {
   },
   imgSrc: {
     type: String,
-  },
-  link: {
-    type: link,
   },
 }
 
