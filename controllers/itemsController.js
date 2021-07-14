@@ -50,7 +50,8 @@ itemsRouter.get('/pages/:langId', async (request, response) => {
     'our-history': ['our-history'],
     'our-team': ['administrative', 'ministry', 'pastoral'],
     'outreach': ['outreach'],
-    'services': ['english-service', 'sunset-service-english-mandarin', 'teo-chew-chinese-service'],
+    'resource-library': ['resource-library'],
+    'services': ['english-service', 'sunset-service-english-mandarin', 'teochew-chinese-service'],
     'statement-of-faith': ['statement-of-faith'],
   }
 
