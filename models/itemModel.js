@@ -51,6 +51,9 @@ const langItems = {
     type: String,
     required: true,
   },
+  summary: {
+    type: String,
+  },
   details: {
     type: details,
   },
