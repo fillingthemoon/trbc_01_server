@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const loginRouter = require('express').Router()
 const User = require('../models/userModel')
+const middleware = require('../utils/middleware')
 
 loginRouter.post('/', async (request, response) => {
   const body = request.body
@@ -32,6 +33,22 @@ loginRouter.post('/', async (request, response) => {
   response
     .status(200)
     .send({ token, username: user.username, })
+})
+
+loginRouter.post('/stay', middleware.userExtractor, async (request, response) => {
+  const body = request.body
+
+  // Check if their email address is verified
+  const user = await User.findOne({ username: body.username })
+  if (user === null) {
+    return response.status(401).json({
+      error: 'Invalid username.'
+    })
+  }
+
+  response
+    .status(200)
+    .send({ token: request.token, username: user.username, })
 })
 
 module.exports = loginRouter
